@@ -3,15 +3,17 @@ const workerURL = "https://aifoodadvisorworker.ahussienwork.workers.dev";
 
 let menuData = [];
 
-// ====== LOAD MENU DATA ======
+// ====== LOAD MENU FROM WORKER KV ======
 async function loadMenu() {
     try {
-        const res = await fetch("menu.json");
+        const res = await fetch(workerURL + "/menu");
         menuData = await res.json();
 
         const restaurants = [...new Set(menuData.map(item => item.restaurant))];
 
         const dropdown = document.getElementById("restaurant");
+        dropdown.innerHTML = ""; // clean
+
         restaurants.forEach(name => {
             const option = document.createElement("option");
             option.value = name;
@@ -19,9 +21,11 @@ async function loadMenu() {
             dropdown.appendChild(option);
         });
 
+        console.log("Menu loaded:", menuData);
+
     } catch (err) {
-        console.error("Error loading menu.json:", err);
-        alert("Failed to load menu items.");
+        console.error("Error loading menu from KV:", err);
+        alert("Failed to load menu. Check KV or Worker.");
     }
 }
 
@@ -34,7 +38,6 @@ async function recommend() {
         budget: document.getElementById("budget").value
     };
 
-    // Validate input
     if (!user.restaurant || !user.height || !user.weight || !user.budget) {
         alert("Please fill all fields.");
         return;
@@ -42,12 +45,10 @@ async function recommend() {
 
     document.getElementById("result").textContent = "Thinking... 🤔";
 
-    // Filter menu for selected restaurant
     const restaurantMenu = menuData.filter(
         item => item.restaurant === user.restaurant
     );
 
-    // Prompt for AI
     const prompt = `
 User Information:
 Height: ${user.height} cm
@@ -59,11 +60,11 @@ Menu Items Available:
 ${JSON.stringify(restaurantMenu)}
 
 Please recommend the best meal for this user.
-Provide a short, clear answer.
+Give a short clear answer.
     `;
 
     try {
-        const response = await fetch(workerURL, {
+        const response = await fetch(workerURL + "/ask", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt })
@@ -72,14 +73,14 @@ Provide a short, clear answer.
         const data = await response.json();
 
         document.getElementById("result").textContent =
-            data.choices[0].message.content;
+            data.answer || data.choices?.[0]?.message?.content;
 
     } catch (err) {
         console.error("AI Error:", err);
         document.getElementById("result").textContent =
-            "Failed to get recommendation 😢";
+            "AI failed to respond 😢";
     }
 }
 
-// ====== RUN ON PAGE LOAD ======
+// ====== INIT ======
 window.onload = loadMenu;
