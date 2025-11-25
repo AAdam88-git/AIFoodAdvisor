@@ -2,8 +2,35 @@
 <html>
 <head>
     <title>Food Advisor AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 200px;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background: #f8f8f8;
+        }
+    </style>
 </head>
 <body>
+
 <h2>Food Advisor AI</h2>
 
 <label>Restaurant:</label>
@@ -20,7 +47,7 @@
 
 <button onclick="recommend()">Recommend</button>
 
-<div id="result" style="margin-top:20px;"></div>
+<div id="result"></div>
 
 <script src="script.js"></script>
 
