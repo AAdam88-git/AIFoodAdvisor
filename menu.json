@@ -1,0 +1,16 @@
+[
+    { "restaurant": "KFC", "item_en": "Zinger Sandwich", "item_ar": "زنجر ساندوتش", "price": 60 },
+    { "restaurant": "KFC", "item_en": "Rice & Chicken", "item_ar": "أرز ودجاج", "price": 55 },
+    { "restaurant": "McDonalds", "item_en": "Big Mac", "item_ar": "بيج ماك", "price": 75 },
+    { "restaurant": "McDonalds", "item_en": "McChicken", "item_ar": "ماك تشيكن", "price": 65 },
+    { "restaurant": "Hardees", "item_en": "Super Star", "item_ar": "سوبر ستار", "price": 85 },
+    { "restaurant": "Hardees", "item_en": "checkien maximum", "item_ar": "فراخ مكيسيكي", "price": 100},
+    { "restaurant": "akeltnea", "item_en": "Beans flate", "item_ar": "طبق فول", "price": 10 },
+    { "restaurant": "akeltnea", "item_en": "Falafle flate", "item_ar": "طبق طعمية", "price": 12 },
+    { "restaurant": "akeltnea", "item_en": "Beans sandwich", "item_ar": "ساندوتش فول", "price": 20 },
+    { "restaurant": "akeltnea", "item_en": "flafe sandwich", "item_ar": "ساندوتش طعمية", "price": 20 },
+    { "restaurant": "Beanous", "item_en": "hot chocolate", "item_ar": "هوت شكوليت", "price": 90 }, 
+    { "restaurant": "Beanous", "item_en": "tea", "item_ar": "شاي", "price": 20 },
+    { "restaurant": "Beanous", "item_en": "coffee", "item_ar": "قهوة", "price": 20 }
+
+]
